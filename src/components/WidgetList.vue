@@ -85,25 +85,10 @@
             ></div>
           </v-col>
         </v-row>
-        <!--  
         <v-row class="align-center mt-n2" dense>
-          <v-col cols="6" class="mt-n4">
-            <span class="font-medium leading-none text-green">
-              Activate badge
-            </span>
-          </v-col>
-          <v-col cols="6" class="d-flex justify-end">
-            <v-switch
-              inset
-              @change="() => toggleActiveWidget(widget)"
-            ></v-switch>
-          </v-col>
-        </v-row>
-        -  -->
-        <v-row class="align-center" dense>
           <!-- text -->
-          <v-col cols="6">
-            <span class="font-medium leading-none text-green mt-n4">
+          <v-col cols="6" class="mt-n6">
+            <span class="font-medium leading-none text-green">
               Activate badge
             </span>
           </v-col>
@@ -114,15 +99,9 @@
             inset
             thumb-color="red lighten-5"
             color="#3b755f"
+            :model-value="widget.active"
+            @change="() => toggleActiveWidget(widget)"
           ></v-switch>
-            <!-- <label class="switch">
-              <input
-                type="checkbox"
-                :checked="widget.active"
-                @change="toggleActiveWidget(widget)"
-              />
-              <span class="slider"></span>
-            </label> -->
           </v-col>
         </v-row>
       </v-col>
