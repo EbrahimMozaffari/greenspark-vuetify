@@ -51,7 +51,7 @@
               Link to Public Profile
             </span>
             <v-icon size="14" class="ml-0 mt-n3" color="#3B755F"
-              >mdi-information</v-icon
+              >mdi-information-outline</v-icon
             >
           </v-col>
           <!-- action -->
@@ -100,24 +100,29 @@
           </v-col>
         </v-row>
         -  -->
-        <v-row class="align-center mt-2" dense>
+        <v-row class="align-center" dense>
           <!-- text -->
           <v-col cols="6">
-            <span class="font-medium leading-none text-green">
+            <span class="font-medium leading-none text-green mt-n4">
               Activate badge
             </span>
           </v-col>
 
           <!-- action -->
           <v-col cols="6" class="d-flex justify-end">
-            <label class="switch">
+            <v-switch
+            inset
+            thumb-color="red lighten-5"
+            color="#3b755f"
+          ></v-switch>
+            <!-- <label class="switch">
               <input
                 type="checkbox"
                 :checked="widget.active"
                 @change="toggleActiveWidget(widget)"
               />
               <span class="slider"></span>
-            </label>
+            </label> -->
           </v-col>
         </v-row>
       </v-col>

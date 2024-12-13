@@ -5,7 +5,6 @@
       <h1 class=" font-bold pb-3 mb-1 border-bottom">
         Per product widgets
       </h1>
-
       <!-- Widget List -->
       <WidgetList />
     </v-card>
@@ -13,10 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import WidgetList from '../components/WidgetList.vue';
+const switch1 = ref(false);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 /* Optional custom styling */
 .custom-background-color{
   background: #f9f9f9;

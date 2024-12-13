@@ -15,12 +15,15 @@ export default defineConfig({
       template: { transformAssetUrls },
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
-    Vuetify(),
+    Vuetify({
+      autoImport: true,
+      styles: { configFile: 'src/styles/settings.scss' }
+    }),
     Components(),
     ViteFonts({
       google: {
         families: [{
-          name: 'Roboto',
+          name: 'Cabin',
           styles: 'wght@100;300;400;500;700;900',
         }],
       },
