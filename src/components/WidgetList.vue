@@ -1,13 +1,17 @@
 <template>
   <v-container class="px-3 px-md-0">
     <!-- Grid layout for widgets -->
-    <v-row dense>
+    <v-row>
       <v-col
-        v-for="widget in widgets"
+        v-for="(widget, index) in widgets"
         :key="widget.id"
         cols="12"
         md="4"
-        class="pa-2"
+        :class="{
+          'pr-md-6': index === 0,
+          'pl-md-6': index === widgets.length - 1,
+          'px-md-6': index !== 0 && index !== widgets.length - 1,
+        }"
       >
         <!-- Section Header -->
         <div
@@ -41,7 +45,7 @@
 
         <!-- Body Sections -->
         <v-row class="align-center" dense>
-          <!-- متن -->
+          <!-- text -->
           <v-col cols="10">
             <span class="font-medium leading-none text-green">
               Link to Public Profile
@@ -50,8 +54,7 @@
               >mdi-information</v-icon
             >
           </v-col>
-
-          <!-- چک‌باکس -->
+          <!-- action -->
           <v-col cols="2" class="d-flex justify-end">
             <v-checkbox
               class="mr-n2"
@@ -63,15 +66,14 @@
           </v-col>
         </v-row>
 
-        <v-row class="align-center" dense>
-          <!-- متن -->
+        <v-row class="align-center mt-n2" dense>
+          <!-- text -->
           <v-col cols="6">
             <span class="font-medium leading-none text-green">
               Badge Colour
             </span>
           </v-col>
-
-          <!-- چک‌باکس -->
+          <!-- action -->
           <v-col cols="6" class="d-flex justify-end">
             <div
               v-for="color in ['blue', 'green', 'beige', 'white', 'black']"
@@ -83,35 +85,49 @@
             ></div>
           </v-col>
         </v-row>
-
-        <v-row class="align-center" dense>
-          <!-- متن -->
+        <!--  
+        <v-row class="align-center mt-n2" dense>
+          <v-col cols="6" class="mt-n4">
+            <span class="font-medium leading-none text-green">
+              Activate badge
+            </span>
+          </v-col>
+          <v-col cols="6" class="d-flex justify-end">
+            <v-switch
+              inset
+              @change="() => toggleActiveWidget(widget)"
+            ></v-switch>
+          </v-col>
+        </v-row>
+        -  -->
+        <v-row class="align-center mt-2" dense>
+          <!-- text -->
           <v-col cols="6">
             <span class="font-medium leading-none text-green">
               Activate badge
             </span>
           </v-col>
 
-          <!-- چک‌باکس -->
+          <!-- action -->
           <v-col cols="6" class="d-flex justify-end">
-            <v-switch
-              dense
-              v-model="widget.active"
-              @change="() => toggleActiveWidget(widget)"
-            ></v-switch>
+            <label class="switch">
+              <input
+                type="checkbox"
+                :checked="widget.active"
+                @change="toggleActiveWidget(widget)"
+              />
+              <span class="slider"></span>
+            </label>
           </v-col>
         </v-row>
-
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-const widgets1 = [{ id: 1 }, { id: 2 }, { id: 3 }]; // نمونه‌ای از داده‌ها
-
 import { onMounted, computed } from "vue";
-import { Widget } from "../stores/index";
+import type { Widget } from "../stores/index";
 import store from "../stores/index";
 import CustomInput from "./CustomInput.vue";
 import customIcon from "./icons/customIcon.vue";
@@ -148,6 +164,7 @@ function handleLinkToProfile(event: Event) {
 
 <style scoped>
 .color-box {
+  margin-left: 4px;
   width: 16px;
   height: 16px;
   border: 2px solid transparent;
@@ -159,5 +176,61 @@ function handleLinkToProfile(event: Event) {
 }
 .color-box:hover {
   opacity: 0.7;
+}
+/* Style for toggle switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 23px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f9f9f9;
+  outline: 1px solid rgba(175, 198, 189, 0.7);
+  border-radius: 20px;
+  transition: 0.4s;
+}
+/*
+    border:solid 1px #AFC6BD;
+      border:solid 1px #F2EBDB;
+  
+  */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: -1px;
+  bottom: 0px;
+  background-color: white;
+  outline: 1px solid rgba(242, 235, 219, 0.7);
+  box-shadow: 1px 0px 0px 0px rgb(0 0 0 / 0.1);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+.slider:hover::before {
+  box-shadow: 0px 0px 1px 6px rgba(175, 198, 189, 0.5);
+}
+input:checked + .slider {
+  background-color: #3b755f;
+  outline: 1px solid #b0b0b0;
+}
+
+input:checked + .slider:before {
+  outline: 1px solid #3b755f;
+  transform: translateX(24px);
 }
 </style>

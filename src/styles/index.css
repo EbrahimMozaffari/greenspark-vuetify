@@ -1,5 +1,5 @@
-body {
-  font-family: 'Cabin', sans-serif;
+body,h1,h4,span{
+  font-family: 'Cabin', sans-serif !important;
 }
 
 

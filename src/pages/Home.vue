@@ -2,9 +2,9 @@
   <v-container class="py-7">
     <v-card class="pa-7 ma-auto rounded-lg elevation-2 custom-background-color" max-width="900">
       <!-- Header -->
-      <h4 class="text-h4 font-bold pb-3 mb-1 border-bottom">
+      <h1 class=" font-bold pb-3 mb-1 border-bottom">
         Per product widgets
-      </h4>
+      </h1>
 
       <!-- Widget List -->
       <WidgetList />
