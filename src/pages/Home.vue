@@ -2,9 +2,9 @@
   <v-container class="py-7">
     <v-card class="pa-7 ma-auto rounded-lg elevation-2 custom-background-color" max-width="900">
       <!-- Header -->
-      <v-card-title class="text-h4 font-bold pb-3 mb-6 border-bottom">
+      <h4 class="text-h4 font-bold pb-3 mb-1 border-bottom">
         Per product widgets
-      </v-card-title>
+      </h4>
 
       <!-- Widget List -->
       <WidgetList />
@@ -22,6 +22,6 @@ import WidgetList from '../components/WidgetList.vue';
   background: #f9f9f9;
 }
 .border-bottom {
-  border-bottom: 2px solid #d1d5db; 
+  border-bottom: 2px solid #d1d5db;
 }
 </style>

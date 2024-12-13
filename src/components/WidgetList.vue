@@ -1,5 +1,5 @@
 <template>
-  <v-container class="px-5 md:px-0">
+  <v-container class="px-3 px-md-0">
     <!-- Grid layout for widgets -->
     <v-row dense>
       <v-col
@@ -7,11 +7,11 @@
         :key="widget.id"
         cols="12"
         md="4"
-        class="pa-5" 
+        class="pa-2"
       >
         <!-- Section Header -->
-        <v-container
-          :class="`pa-3 mb-7 rounded-lg custom-bg-${widget.selectedColor}`"
+        <div
+          :class="`pa-2 mx-n1 mb-0 rounded-lg custom-bg-${widget.selectedColor}`"
         >
           <v-row dense>
             <v-col cols="3" class="d-flex align-start">
@@ -26,46 +26,53 @@
             </v-col>
             <v-col
               cols="9"
-              :class="widget.selectedColor !== 'white' &&
-              widget.selectedColor !== 'beige'
-                ? 'text-white'
-                : 'text-green'"
+              :class="
+                widget.selectedColor !== 'white' &&
+                widget.selectedColor !== 'beige'
+                  ? 'text-white'
+                  : 'text-green'
+              "
             >
               <div class="text-xs">This product {{ widget.action }}</div>
               <div class="text-lg">{{ widget.amount }} {{ widget.type }}</div>
             </v-col>
           </v-row>
-        </v-container>
+        </div>
 
         <!-- Body Sections -->
-        <v-row dense>
-          <v-col cols="9">
-            <v-row class="">
-              <span class="ont-medium leading-none text-green">
-                Link to Public Profile
-              </span>
-              <v-icon size="14" class="ml-1" color="#3B755F">mdi-information</v-icon>
-            </v-row>
+        <v-row class="align-center" dense>
+          <!-- متن -->
+          <v-col cols="10">
+            <span class="font-medium leading-none text-green">
+              Link to Public Profile
+            </span>
+            <v-icon size="14" class="ml-0 mt-n3" color="#3B755F"
+              >mdi-information</v-icon
+            >
           </v-col>
-          <v-col cols="3" class="">
+
+          <!-- چک‌باکس -->
+          <v-col cols="2" class="d-flex justify-end">
             <v-checkbox
-            color="#3B755F"
-             @checked="handleLinkToProfile"
-            :value="widget.id"
-            hide-details
-          ></v-checkbox>
-            <!-- <CustomInput
-              :input-value="widget.id"
+              class="mr-n2"
+              color="#3B755F"
               @checked="handleLinkToProfile"
-            /> -->
+              :value="widget.id"
+              hide-details
+            ></v-checkbox>
           </v-col>
         </v-row>
 
-        <v-row dense class=" align-center pa-0">
-          <v-col cols="6" class="font-medium text-green">
-            Badge Colour
+        <v-row class="align-center" dense>
+          <!-- متن -->
+          <v-col cols="6">
+            <span class="font-medium leading-none text-green">
+              Badge Colour
+            </span>
           </v-col>
-          <v-col cols="6" class="d-flex justify-end ">
+
+          <!-- چک‌باکس -->
+          <v-col cols="6" class="d-flex justify-end">
             <div
               v-for="color in ['blue', 'green', 'beige', 'white', 'black']"
               :key="color"
@@ -77,28 +84,31 @@
           </v-col>
         </v-row>
 
-        <v-row dense class="align-center">
-          <v-col cols="9" class="text-[14px] font-medium text-green">
-            Activate badge
+        <v-row class="align-center" dense>
+          <!-- متن -->
+          <v-col cols="6">
+            <span class="font-medium leading-none text-green">
+              Activate badge
+            </span>
           </v-col>
-          <v-col cols="3" class="d-flex justify-end">
+
+          <!-- چک‌باکس -->
+          <v-col cols="6" class="d-flex justify-end">
             <v-switch
+              dense
               v-model="widget.active"
               @change="() => toggleActiveWidget(widget)"
             ></v-switch>
           </v-col>
         </v-row>
+
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-const widgets1 = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-]; // نمونه‌ای از داده‌ها
+const widgets1 = [{ id: 1 }, { id: 2 }, { id: 3 }]; // نمونه‌ای از داده‌ها
 
 import { onMounted, computed } from "vue";
 import { Widget } from "../stores/index";
