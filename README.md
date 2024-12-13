@@ -24,7 +24,7 @@ A Vue 3 application designed for managing widgets with customizable properties s
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/EbrahimMozaffari/greenspark.git
+   git clone https://github.com/EbrahimMozaffari/greenspark-vuetify.git
    ```
 
 2. Install dependencies:
