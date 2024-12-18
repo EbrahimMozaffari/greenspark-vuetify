@@ -1,6 +1,9 @@
 body,h1,h4,span{
   font-family: 'Cabin', sans-serif !important;
 }
+.custom-font-size{
+  font-size: 14px;
+}
 
 
 .custom-bg-green {

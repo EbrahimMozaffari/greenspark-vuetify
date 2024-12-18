@@ -1,11 +1,10 @@
 <template>
-  <v-app class="customBg">
+  <v-app class="customBg  ">
     <v-container
-      class="d-flex align-center justify-center pa-5"
-      style="height: 100vh;"
+      class="d-flex align-center justify-center pa-5 fill-height"
     >
       <!-- Main Content -->
-      <v-main class="flex-grow-1">
+      <v-main >
         <slot />
       </v-main>
     </v-container>

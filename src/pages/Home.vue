@@ -1,10 +1,10 @@
 <template>
-  <v-container class="py-7">
+  <v-container class="py-7 px-3">
     <v-card class="pa-7 ma-auto rounded-lg elevation-2 custom-background-color" max-width="900">
       <!-- Header -->
-      <h1 class=" font-bold pb-3 mb-1 border-bottom">
+      <p class="font-weight-bold customfont pb-3 mb-1 border-bottom">
         Per product widgets
-      </h1>
+      </p>
       <!-- Widget List -->
       <WidgetList />
     </v-card>
@@ -24,5 +24,8 @@ const switch1 = ref(false);
 }
 .border-bottom {
   border-bottom: 2px solid #d1d5db;
+}
+.customfont{
+  font-size: 30px;
 }
 </style>

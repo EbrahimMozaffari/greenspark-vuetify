@@ -63,7 +63,9 @@ const actions = {
     { commit }: { commit: Function },
     payload: { id: number; color: string }
   ) {
-    const newWidgets = state.widgets.map((widget: Widget) => {
+    const widgetsCopy = [...state.widgets]; // کپی آرایه
+
+    const newWidgets = widgetsCopy.map((widget: Widget) => {
       if (widget.id === payload.id) {
         return {
           ...widget,
@@ -92,19 +94,33 @@ const actions = {
   },
   // Action to update the link status of a widget
   updateWidgetLink(
-    { commit }: { commit: Function },
-    payload: { id: number; isLinked: boolean }
+    { commit, state }: { commit: Function; state: { widgets: Widget[] } },
+    payload: { id: number; isChecked: boolean }
   ) {
-    const newWidgets = state.widgets.map((widget: Widget) => {
+    // Check if the widget exists
+
+    const widgetExists = state.widgets.some((widget) => {
+      if (widget.id === payload.id) return true;
+    });
+
+    if (!widgetExists) {
+      console.error(`Widget with id ${payload.id} not found.`);
+      return;
+    }
+
+    // Update the widgets list
+    const newWidgets = state.widgets.map((widget) => {
       if (widget.id === payload.id) {
         return {
           ...widget,
-          isLinked: payload.isLinked, // Update the linked status
+          linked: payload.isChecked, // Update the linked status
         };
       }
       return widget;
     });
-    commit("setWidgets", newWidgets); // Commit the updated widgets to the state
+
+    // Commit the updated widgets to the state
+    commit("setWidgets", newWidgets);
   },
 };
 

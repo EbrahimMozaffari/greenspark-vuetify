@@ -7,14 +7,15 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CustomCeckbox: typeof import('./src/components/Layout/UI/CustomCeckbox.vue')['default']
     CustomIcon: typeof import('./src/components/icons/customIcon.vue')['default']
     CustomInput: typeof import('./src/components/CustomInput.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Layout: typeof import('./src/components/Layout/Layout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    WidgetCard: typeof import('./src/components/WidgetCard.vue')['default']
-    WidgetControls: typeof import('./src/components/WidgetControls.vue')['default']
+    Tooltip: typeof import('./src/components/Layout/UI/Tooltip.vue')['default']
+    WidgetComponent: typeof import('./src/components/Layout/WidgetComponent.vue')['default']
     WidgetList: typeof import('./src/components/WidgetList.vue')['default']
   }
 }

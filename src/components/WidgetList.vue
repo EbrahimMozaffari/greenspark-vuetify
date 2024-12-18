@@ -3,6 +3,19 @@
     <!-- Grid layout for widgets -->
     <v-row>
       <v-col
+      v-for="(widget, index) in widgets"
+      :key="widget.id"
+      cols="12"
+      md="4"
+      :class="{
+        'pr-md-6': index === 0,
+        'pl-md-6': index === widgets.length - 1,
+        'px-md-6': index !== 0 && index !== widgets.length - 1,
+      }"
+    >
+    <WidgetComponent :widget="widget" @handleLinkToProfile="LinkToProfileStore" /> 
+  </v-col>
+      <v-col
         v-for="(widget, index) in widgets"
         :key="widget.id"
         cols="12"
@@ -50,16 +63,14 @@
             <span class="font-medium leading-none text-green">
               Link to Public Profile
             </span>
-            <v-icon size="14" class="ml-0 mt-n3" color="#3B755F"
-              >mdi-information-outline</v-icon
-            >
+            <Tooltip />
           </v-col>
           <!-- action -->
           <v-col cols="2" class="d-flex justify-end">
             <v-checkbox
               class="mr-n2"
               color="#3B755F"
-              @checked="handleLinkToProfile"
+              @checked="LinkToProfileStore"
               :value="widget.id"
               hide-details
             ></v-checkbox>
@@ -73,14 +84,16 @@
               Badge Colour
             </span>
           </v-col>
-          <!-- action -->
+          <!-- action :style="{ backgroundColor: backgroundColor.color }"  backgroundColor-->
           <v-col cols="6" class="d-flex justify-end">
             <div
               v-for="color in ['blue', 'green', 'beige', 'white', 'black']"
               :key="color"
-              :style="{ backgroundColor: color }"
               class="color-box"
-              :class="{ selected: widget.selectedColor === color }"
+              :class="[
+                { selected: widget.selectedColor === color },
+                `custom-bg-${color}`,
+              ]"
               @click="updateWidgetColorById(widget.id, color)"
             ></div>
           </v-col>
@@ -96,12 +109,12 @@
           <!-- action -->
           <v-col cols="6" class="d-flex justify-end">
             <v-switch
-            inset
-            thumb-color="red lighten-5"
-            color="#3b755f"
-            :model-value="widget.active"
-            @change="() => toggleActiveWidget(widget)"
-          ></v-switch>
+              inset
+              thumb-color="red lighten-5"
+              color="#3b755f"
+              :model-value="widget.active"
+              @change="() => toggleActiveWidget(widget)"
+            ></v-switch>
           </v-col>
         </v-row>
       </v-col>
@@ -113,8 +126,11 @@
 import { onMounted, computed } from "vue";
 import type { Widget } from "../stores/index";
 import store from "../stores/index";
-import CustomInput from "./CustomInput.vue";
+// import CustomInput from "./CustomInput.vue";
 import customIcon from "./icons/customIcon.vue";
+import Tooltip from "./Layout/UI/Tooltip.vue";
+import WidgetComponent from "./Layout/WidgetComponent.vue"; 
+// import { fa } from "vuetify/locale";
 
 // Fetch widgets from the store when the component is mounted
 onMounted(async () => {
@@ -137,16 +153,23 @@ function toggleActiveWidget(selectedWidget: Widget) {
 }
 
 // Handle linking to the profile
-function handleLinkToProfile(event: Event) {
-  const target = event.target as HTMLInputElement;
-  const isChecked = target.checked; // Check if the checkbox is checked
-  const widgetId = target.value; // Get the widget ID
-
-  store.dispatch("updateWidgetLink", { id: widgetId, isChecked });
+// function handleLinkToProfile(event: Event) {
+//   const target = event.target as HTMLInputElement;
+//   const isChecked = target.checked; // Check if the checkbox is checked
+//   const widgetId = target.value; // Get the widget ID
+//   console.log({ id: Number(widgetId), isChecked });
+  
+//   store.dispatch("updateWidgetLink", { id: Number(widgetId), isChecked });
+// }
+function LinkToProfileStore(data: { id: number; isChecked: boolean }) {
+store.dispatch("updateWidgetLink", data);
 }
+
 </script>
 
 <style scoped>
+
+
 .color-box {
   margin-left: 4px;
   width: 16px;
