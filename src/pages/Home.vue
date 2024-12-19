@@ -27,5 +27,6 @@ const switch1 = ref(false);
 }
 .customfont{
   font-size: 30px;
+  color: #212121;
 }
 </style>

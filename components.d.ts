@@ -7,7 +7,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    CustomCeckbox: typeof import('./src/components/Layout/UI/CustomCeckbox.vue')['default']
     CustomCheckbox: typeof import('./src/components/Layout/UI/CustomCheckbox.vue')['default']
     CustomColorPicker: typeof import('./src/components/Layout/UI/CustomColorPicker.vue')['default']
     CustomIcon: typeof import('./src/components/icons/customIcon.vue')['default']

@@ -5,6 +5,7 @@
       <v-col
         v-for="(widget, index) in widgets"
         :key="widget.id"
+        class="pb-0"
         cols="12"
         md="4"
         :class="{
