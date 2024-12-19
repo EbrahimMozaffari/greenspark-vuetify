@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import type { Widget } from "../../stores/index";
 import Tooltip from "./UI/Tooltip.vue";
-import CustomCeckbox from "./UI/CustomCeckbox.vue";
+import CustomCeckbox from "./UI/CustomCheckbox.vue";
 import CustomColorPicker from "./UI/CustomColorPicker.vue";
 import CustomSwitch from "./UI/CustomSwitch.vue";
 import WidgetCardHeader from "./UI/WidgetCardHeader.vue";

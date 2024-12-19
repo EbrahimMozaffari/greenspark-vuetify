@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import customIcon from '../../icons/customIcon.vue';
 const props = defineProps({
   selectedColor: String,
   action: String,

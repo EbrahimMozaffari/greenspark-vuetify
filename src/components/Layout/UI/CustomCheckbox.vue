@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-// Props دریافتی از والد
+// Props
 const props = defineProps({
   id: {
     type: Number,
@@ -34,19 +34,17 @@ const props = defineProps({
   },
 });
 
-// Emits برای ارسال وضعیت به والد
-//const emit = defineEmits(["update"]);
+// Emits
+
 const emit = defineEmits<{
   (e: "update", data: { id: number; isChecked: boolean }): void;
 }>();
-// وضعیت داخلی چک‌باکس
+
 import { ref, watch } from "vue";
 const localChecked = ref(false);
 
-// مقدار اولیه وضعیت تیک را ست می‌کند
 localChecked.value = !!props.checked;
 
-// واکنش به تغییر prop خارجی و آپدیت مقدار داخلی
 watch(
   () => props.checked,
   (newVal) => {
@@ -54,7 +52,6 @@ watch(
   }
 );
 
-// متد ارسال وضعیت به والد
 const handleChange = () => {
   emit("update", { id: props.id, isChecked: localChecked.value });
 };

@@ -51,7 +51,7 @@ A Vue 3 application designed for managing widgets with customizable properties s
 
 ## Code Structure
 
-- **src/components**: Contains Vue components such as CustomInput and CustomIcon.
+- **src/components**: Contains UI Components.
 - **src/stores**: Vuex store for state management.
 - **src/services**: Axios client and API services.
 - **src/assets**: Static assets like images or icons.
