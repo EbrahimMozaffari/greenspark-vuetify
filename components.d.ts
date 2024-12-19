@@ -8,13 +8,16 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CustomCeckbox: typeof import('./src/components/Layout/UI/CustomCeckbox.vue')['default']
+    CustomColorPicker: typeof import('./src/components/Layout/UI/CustomColorPicker.vue')['default']
     CustomIcon: typeof import('./src/components/icons/customIcon.vue')['default']
     CustomInput: typeof import('./src/components/CustomInput.vue')['default']
+    CustomSwitch: typeof import('./src/components/Layout/UI/CustomSwitch.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Layout: typeof import('./src/components/Layout/Layout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Tooltip: typeof import('./src/components/Layout/UI/Tooltip.vue')['default']
+    WidgetCardHeader: typeof import('./src/components/Layout/UI/WidgetCardHeader.vue')['default']
     WidgetComponent: typeof import('./src/components/Layout/WidgetComponent.vue')['default']
     WidgetList: typeof import('./src/components/WidgetList.vue')['default']
   }

@@ -3,18 +3,23 @@
     <!-- Grid layout for widgets -->
     <v-row>
       <v-col
-      v-for="(widget, index) in widgets"
-      :key="widget.id"
-      cols="12"
-      md="4"
-      :class="{
-        'pr-md-6': index === 0,
-        'pl-md-6': index === widgets.length - 1,
-        'px-md-6': index !== 0 && index !== widgets.length - 1,
-      }"
-    >
-    <WidgetComponent :widget="widget" @handleLinkToProfile="LinkToProfileStore" /> 
-  </v-col>
+        v-for="(widget, index) in widgets"
+        :key="widget.id"
+        cols="12"
+        md="4"
+        :class="{
+          'pr-md-6': index === 0,
+          'pl-md-6': index === widgets.length - 1,
+          'px-md-6': index !== 0 && index !== widgets.length - 1,
+        }"
+      >
+        <WidgetComponent
+          :widget="widget"
+          @handleLinkToProfile="LinkToProfileStore"
+          @updateWidgetColorById="updateWidgetColorByIdStore"
+          @toggleActiveWidget="toggleActiveWidget"
+        />
+      </v-col>
       <v-col
         v-for="(widget, index) in widgets"
         :key="widget.id"
@@ -84,7 +89,7 @@
               Badge Colour
             </span>
           </v-col>
-          <!-- action :style="{ backgroundColor: backgroundColor.color }"  backgroundColor-->
+          <!-- action -->
           <v-col cols="6" class="d-flex justify-end">
             <div
               v-for="color in ['blue', 'green', 'beige', 'white', 'black']"
@@ -94,7 +99,7 @@
                 { selected: widget.selectedColor === color },
                 `custom-bg-${color}`,
               ]"
-              @click="updateWidgetColorById(widget.id, color)"
+              @click="updateWidgetColorById1(widget.id, color)"
             ></div>
           </v-col>
         </v-row>
@@ -113,7 +118,7 @@
               thumb-color="red lighten-5"
               color="#3b755f"
               :model-value="widget.active"
-              @change="() => toggleActiveWidget(widget)"
+              @change="() => toggleActiveWidget1(widget)"
             ></v-switch>
           </v-col>
         </v-row>
@@ -129,7 +134,7 @@ import store from "../stores/index";
 // import CustomInput from "./CustomInput.vue";
 import customIcon from "./icons/customIcon.vue";
 import Tooltip from "./Layout/UI/Tooltip.vue";
-import WidgetComponent from "./Layout/WidgetComponent.vue"; 
+import WidgetComponent from "./Layout/WidgetComponent.vue";
 // import { fa } from "vuetify/locale";
 
 // Fetch widgets from the store when the component is mounted
@@ -143,12 +148,17 @@ const widgets = computed(() => {
 });
 
 // Update the color of a specific widget
-function updateWidgetColorById(id: number, color: string) {
+function updateWidgetColorByIdStore(data: { id: number; color: string }) {
+  store.dispatch("updateWidgetColor", data);
+}
+function updateWidgetColorById1(id: number, color: string) {
   store.dispatch("updateWidgetColor", { id, color });
 }
-
 // Toggle the active state of a widget, ensuring only one widget is active
-function toggleActiveWidget(selectedWidget: Widget) {
+const toggleActiveWidget = (selectedWidgetId:Number) => {
+  store.dispatch("toggleActiveWidget", selectedWidgetId);
+};
+function toggleActiveWidget1(selectedWidget: Widget) {
   store.dispatch("toggleActiveWidget", selectedWidget.id);
 }
 
@@ -158,18 +168,15 @@ function toggleActiveWidget(selectedWidget: Widget) {
 //   const isChecked = target.checked; // Check if the checkbox is checked
 //   const widgetId = target.value; // Get the widget ID
 //   console.log({ id: Number(widgetId), isChecked });
-  
+
 //   store.dispatch("updateWidgetLink", { id: Number(widgetId), isChecked });
 // }
 function LinkToProfileStore(data: { id: number; isChecked: boolean }) {
-store.dispatch("updateWidgetLink", data);
+  store.dispatch("updateWidgetLink", data);
 }
-
 </script>
 
 <style scoped>
-
-
 .color-box {
   margin-left: 4px;
   width: 16px;
